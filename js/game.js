@@ -4,6 +4,7 @@ var displayTimer;
 
 var answerBtn1 = document.getElementById('answer-1');
 var answerBtn2 = document.getElementById('answer-2');
+var progress = document.getElementById('progress');
 var question = document.getElementById('question');
 var timer = document.getElementById('timer');
 
@@ -21,10 +22,7 @@ window.onload = function () {
         return document.getElementById('solution').setAttribute('class', 'show');
     }
 
-    answerBtn1 = document.getElementById('answer-1');
-    answerBtn2 = document.getElementById('answer-2');
-    question = document.getElementById('question');
-    timer = document.getElementById('timer');
+    progress.setAttribute('max', questions.length);
 
     answerBtn1.addEventListener('click', function () {
         checkAnswer(1, counter);
@@ -54,7 +52,7 @@ function runQuestion(key) {
 
     return answerTimeout = setTimeout(function () {
         counter = 0;
-        document.getElementById('progress').value = counter;
+        progress.value = counter;
 
         return runQuestion(counter);
     }, seconds * 1000);
@@ -63,7 +61,7 @@ function runQuestion(key) {
 function checkAnswer(value, key) {
     if (questions[key].v === value) {
         counter++;
-        document.getElementById('progress').value = counter;
+        progress.value = counter;
 
         if (counter < questions.length) {
             return runQuestion(counter);
@@ -79,7 +77,7 @@ function checkAnswer(value, key) {
         }
     } else {
         counter = 0;
-        document.getElementById('progress').value = counter;
+        progress.value = counter;
 
         return runQuestion(counter);
     }
