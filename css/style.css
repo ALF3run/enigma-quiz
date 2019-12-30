@@ -61,6 +61,10 @@ body,
             margin-top: 10px;
         }
 
+        .logo {
+            height: 30vh;
+        }
+
         #solution {
             background: #000;
             display: flex;
@@ -84,6 +88,6 @@ body,
 
         #timer {
             color: #c00;
-            font-size: 30vh;
-            min-height: 30vh;
+            font-size: 20vh;
+            min-height: 20vh;
         }
