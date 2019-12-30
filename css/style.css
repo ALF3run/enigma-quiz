@@ -1,0 +1,88 @@
+body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        main {
+            padding: 15px;
+        }
+
+        progress[value] {
+            /* Reset the default appearance */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            
+            /* Get rid of default border in Firefox. */
+            border: none;
+            height: 20px;
+            width: 100%;
+        }
+
+        progress[value]::-webkit-progress-bar {
+            background-color: #333;
+            border-radius: 2px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+        }
+
+        progress[value]::-webkit-progress-value {
+            background-image:
+                -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)),
+                -webkit-linear-gradient(left, #222, #c00);
+            border-radius: 2px; 
+            background-size: 100% 100%, 100% 100%;
+        }
+
+        progress[value]::-moz-progress-bar { 
+            background-image:
+                -moz-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)),
+                -moz-linear-gradient(left, #222, #c00);
+            border-radius: 2px; 
+            background-size: 100% 100%, 100% 100%; 
+        }
+
+        .answers button {
+            -webkit-appearance: none;
+            background-color: #c00;
+            border: none;
+            border-radius: 2px;
+        }
+
+        .answers > div + div {
+            margin-top: 10px;
+        }
+
+        #solution {
+            background: #000;
+            display: flex;
+                align-items: center;
+                justify-content: center;
+            opacity: 0;
+            position: fixed;
+                top: 100%;
+                right: 100%;
+                bottom: 0;
+                left: 0;
+            transition: opacity 1s linear;
+        }
+
+        #solution.show {
+            font-size: 2rem;
+            top: 0;
+            right: 0;
+            opacity: 1;
+        }
+
+        #timer {
+            color: #c00;
+            font-size: 30vh;
+            min-height: 30vh;
+        }
