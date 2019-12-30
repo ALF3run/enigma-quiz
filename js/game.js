@@ -6,30 +6,30 @@ var answerBtn1 = document.getElementById('answer-1');
 var answerBtn2 = document.getElementById('answer-2');
 var progress = document.getElementById('progress');
 var question = document.getElementById('question');
+var solution = document.getElementById('solution');
 var timer = document.getElementById('timer');
 
 window.onload = function () {
     var cookies = {};
     
     document.cookie.split(';').map(function (el) {
-        var couple = el.split('=');
-        var obj = {};
+        el = el.split('=');
 
-        return cookies[couple[0]] = couple[1];
+        return cookies[el[0]] = el[1];
     });
 
     if (cookies.solution === 'true') {
-        return document.getElementById('solution').setAttribute('class', 'show');
+        return solution.setAttribute('class', 'show');
     }
 
     progress.setAttribute('max', questions.length);
 
     answerBtn1.addEventListener('click', function () {
-        checkAnswer(1, counter);
+        checkAnswer(answerBtn1.value, counter);
     });
 
     answerBtn2.addEventListener('click', function () {
-        checkAnswer(2, counter);
+        checkAnswer(answerBtn2.value, counter);
     });
 
     runQuestion(0);
@@ -37,13 +37,24 @@ window.onload = function () {
 
 function runQuestion(key) {
     var seconds = 5;
+    var randomizer = Math.random();
 
     clearTimeout(answerTimeout);
     clearInterval(displayTimer);
 
     question.innerText = questions[key].q;
-    answerBtn1.innerText = questions[key].a[0];
-    answerBtn2.innerText = questions[key].a[1];
+
+    if(randomizer > 0.5) {
+        answerBtn1.innerText = questions[key].a[0];
+        answerBtn2.innerText = questions[key].a[1];
+        answerBtn1.setAttribute('value', 1);
+        answerBtn2.setAttribute('value', 2);
+    } else {
+        answerBtn1.innerText = questions[key].a[1];
+        answerBtn2.innerText = questions[key].a[0];
+        answerBtn1.setAttribute('value', 2);
+        answerBtn2.setAttribute('value', 1);
+    }
 
     timer.innerText = seconds;
     displayTimer = setInterval(function () {
@@ -59,7 +70,7 @@ function runQuestion(key) {
 }
 
 function checkAnswer(value, key) {
-    if (questions[key].v === value) {
+    if (questions[key].v == value) {
         counter++;
         progress.value = counter;
 
@@ -70,7 +81,7 @@ function checkAnswer(value, key) {
             clearInterval(displayTimer);
 
             timer.innerText = '-';
-            document.getElementById('solution').setAttribute('class', 'show');
+            solution.setAttribute('class', 'show');
             document.cookie = "solution=true; max-age=3600";
 
             return true;
@@ -81,5 +92,4 @@ function checkAnswer(value, key) {
 
         return runQuestion(counter);
     }
-
 }
