@@ -8,14 +8,16 @@ var question = document.getElementById('question');
 var timer = document.getElementById('timer');
 
 window.onload = function () {
-    var solutionCookie = document.cookie.split(';').map(function (el) {
+    var cookies = {};
+    
+    document.cookie.split(';').map(function (el) {
         var couple = el.split('=');
         var obj = {};
 
-        return obj[couple[0]] = couple[1];
+        return cookies[couple[0]] = couple[1];
     });
 
-    if (solutionCookie === 'true') {
+    if (cookies.solution === 'true') {
         return document.getElementById('solution').setAttribute('class', 'show');
     }
 
