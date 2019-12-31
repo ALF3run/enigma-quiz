@@ -57,6 +57,6 @@ var questions = [
     {
         q: 'Quale tra i seguenti filosofi NON si dedicò anche a studi scientifici?',
         a: ['Rousseau', 'Descartes'],
-        v: 2
+        v: 1
     }
 ];
